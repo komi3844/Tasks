@@ -1,19 +1,20 @@
-from typing import Union
-
-
-def sun_angle(time: str) -> Union[int, str]:
-    angle = (int(time.split(":")[0])-6) * 15 + int(time.split(":")[1]) * 0.25
-    if angle < 0 or angle > 180:        # we delete the negative angles        
-        return "I don't see the sun!" 
-    # replace this for solution
-    return angle
+def split_list(items: list) -> list:
+    if len(items) % 2 == 0:
+        return([items[:len(items)//2], items[len(items)//2:]])
+    elif len(items) % 2 != 0:
+        return([items[:(len(items) // 2)+1], items[(len(items) // 2)+1:]])
+    else:
+        return [items, items]
 
 
 if __name__ == '__main__':
     print("Example:")
-    print(sun_angle("07:00"))
+    print(split_list([1, 2, 3, 4, 5, 6]))
 
-    # These "asserts" using only for self-checking and not necessary for auto-testing
-    assert sun_angle("07:00") == 15
-    assert sun_angle("01:23") == "I don't see the sun!"
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert split_list([1, 2, 3, 4, 5, 6]) == [[1, 2, 3], [4, 5, 6]]
+    assert split_list([1, 2, 3]) == [[1, 2], [3]]
+    assert split_list([1, 2, 3, 4, 5]) == [[1, 2, 3], [4, 5]]
+    assert split_list([1]) == [[1], []]
+    assert split_list([]) == [[], []]
     print("Coding complete? Click 'Check' to earn cool rewards!")
